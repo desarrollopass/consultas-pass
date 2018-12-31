@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <link rel="icon" href="img/favicon_white.ico" sizes="16x16 32x32 48x48" type="image/png">
+
+    <title>Control de llamadas - PASS Consultores</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- jQuery UI Autocomplete-->
+    <!--<link href="css/jquery-ui-ac.css" rel="stylesheet">-->
+	
+	<!-- Date Time Picker CSS -->        
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+	
+	<!-- Jquery UI Style CSS -->
+	<link href="css/jquery-ui.css" rel="stylesheet">
+	
+    <!-- Font Awesome CSS -->
+	<link href="css/font-awesome.css" rel="stylesheet">
+    
+	<!-- Main Style CSS -->
+	<link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+    body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body> 
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>-->
+                <a class="navbar-brand logo" href="index.html">
+					<img src="img/logo_pass3.png" alt="Logo PASS">
+				</a>
+                <!--<a class="navbar-brand" href="#">Semana CRM</a>-->
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+			
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <!--<li>
+                        <a href="index.html">Eventos</a>
+                    </li>
+                    <!--<li>
+                        <a href="nv_recep.html">Recepción</a>
+                    </li>
+                    <!--<li>
+                        <a href="open_tickets.html">Pendientes Por Asignar</a>
+                    </li>-->
+					<!--
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <h1 id="title-filtro">Inicia Sesión</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default col-md-4 col-md-offset-4">
+                <div class="panel-body">
+                    <div class="form-group col-md-10 col-md-offset-1">
+						<label for="userName">Usuario:</label>
+						<input type="text" class="form-control" name="userName">
+					</div>
+                    <div class="form-group col-md-10 col-md-offset-1">
+						<label for="password">Contraseña:</label>
+						<input type="password" class="form-control" name="password">
+					</div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary" id="btn-login">Entrar</button>
+                    </div>
+                </div>
+            </div>
+			<form id="eventos-form" action='index_eventos.php' method='POST'>
+				<div class="col-md-12" id="filtro-eventos">
+                    
+				</div>
+			</form>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+    
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Powered by <a href="http://www.pass.com.mx" target="_blank">PASS Consultores</a></span>
+        </div>
+    </footer>
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+	
+	<!-- jQuery UI -->
+    <script src="js/jquery-ui.js"></script>
+    
+    <!-- jQuery UI Autocomplete -->
+    <!--<script src="js/jquery-ui-ac.js"></script>-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- Validate JS -->
+    <script type='text/javascript' src='js/jquery.validate.min.js'></script>
+    
+    <!-- List JS -->
+    <!--<script src="js/list.min.js"></script>-->
+	
+	<!-- Main JS -->
+    <script src="js/login.js"></script>
+    
+</body>
+
+</html>

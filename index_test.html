@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<meta http-equiv="refresh" content="300">-->
+    
+    <link rel="icon" href="img/favicon_white.ico" sizes="16x16 32x32 48x48" type="image/png">
+
+    <title>PASS - Control de llamadas</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- jQuery UI Autocomplete-->
+    <link href="css/jquery-ui.css" rel="stylesheet">
+	
+	<!-- Date Time Picker CSS -->        
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+	
+    <!-- Font Awesome Style CSS -->
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+    
+	<!-- Main Style CSS -->
+	<link href="css/style_test.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+    body {
+        padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand logo" href="#">
+					<img src="img/logo_pass3.png" alt="Logo PASS">
+				</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <!--<li>
+                        <a href="index.html">Control de llamadas</a>
+                    </li>
+                    <!--<li>
+                        <a href="progreso-contrato.html">Progreso por Contrato</a>
+                    </li>
+                    <!--<li>
+                        <a href="#">Contact</a>
+                    </li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 id="title-filtro">Control de llamadas</h1>
+            </div>
+            <div class="row">
+                <form id="llamada-form" action='consulta.php' method='POST'>
+                    <div class="col-md-12">
+                        <!--<div class="form-group col-md-3">
+                            <div class="panel panel-default">
+                                <div class="panel-body">2016-11-24 05:08 pm</div>
+                            </div>
+                        </div>-->
+                        <div class="form-group col-md-2">
+                            <label for="fecha_hora">Fecha y Hora:</label>
+                            <!--<p class="form-control-static" >2016-11-24 05:08 pm</p>-->
+                            <!--<input type="text" class="form-control" name="fecha_hora" readonly>-->
+                            <div class="panel panel-default">
+                                <div class="panel-body" id="fecha_hora"></div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="contacto">Contacto:</label>
+                            <input type="text" class="form-control" name="contacto">
+                            <p class="hidden" id="tipo_lead"></p>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="empresa">Empresa:</label>
+                            <input type="text" class="form-control" name="empresa">
+                            <p class="hidden" id="valid">1</p>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="tel">Teléfono:</label>
+                            <input type="text" class="form-control" name="tel">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="email">E-Mail:</label>
+                            <input type="text" class="form-control" name="email">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                         <div class="form-group col-md-12">
+                             <label for="comment">Solicitud:</label>
+                             <textarea class="form-control" rows="2" id="comment" name="solicitud"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group col-md-2">
+                            <!--<label for="tipo">Tipo:</label>
+                            <input type="text" class="form-control" name="tipo" readonly>-->
+                            <label for="tipo_cliente">Tipo:</label>
+                            <div class="panel panel-default">
+                                <div class="panel-body" id="tipo_cliente"></div>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="" id="chk-otros">Otros</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="select_origen">Origen:</label>
+                            <select class="form-control" id="select_origen" name="origen">
+                                <option value="default">-Elige-</option>
+                                <option value="n/a">n/a</option>
+                                <option value="Aspel">Aspel</option>
+                                <option value="Google">Google</option>
+                                <option>Expo</option>
+                                <option>Evento Aspel</option>
+                                <option>WhatsApp</option>
+                                <option value="Teléfono">Teléfono</option>
+                                <option>E-Mail</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <!--<label for="select_estatus">Estatus:</label>-->
+                            <label for="select_asunto">Asunto:</label>
+                            <select class="form-control" id="select_asunto" name="asunto">
+                                <option value="default">-Elige-</option>
+                                <option value="Ticket">Ticket</option>
+                                <option>Cotización</option>
+                                <option>Información</option>
+                                <option>Seguimiento</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <!--<label for="select_estatus">Estatus:</label>-->
+                            <label for="select_asignado">Asignar a:</label>
+                            <select class="form-control" id="select_asignado" name="asignado">
+                                <option value="default">-Elige-</option>
+                                <option>Michelle Zamora</option>
+                                <option>Gloria Vazquez</option>
+                                <option>Gaby Espinosa</option>
+                                <option>Leonardo Soto</option>
+                                <option>Héctor Ortiz</option>
+                            </select>
+                        </div>
+                        <!--<div class="form-group col-md-2">
+                            <label for="ticket">Ticket:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">TT</div>
+                                <input type="text" class="form-control" name="ticket" value="n/a" disabled>
+                            </div>
+                        </div>-->
+                        <div class="col-md-2">
+                            <!--<input type="button" class="btn btn-primary btn-guardar" name="llamada-submit" value="Guardar">-->
+                            <button type="button" class="btn btn-primary" id="btn-guardar">Guardar</button>
+                            <button type="button" class="btn btn-primary btn-filtrar">Filtrar</button>
+                        </div>
+                        <div class="col-md-2">
+                             <div class="btn-group btns-week">
+                                 <button type="button" class="btn btn-default"><i class="fa fa-arrow-left"></i></button>
+                                 <button type="button" class="btn btn-default today">Actual</button>
+                                 <button type="button" class="btn btn-default"><i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+            <!--<div class="col-md-12" id="badges">
+                <div class="col-md-2 color-div">
+                    <p class="color-title">Llamadas totales</p>
+                    <div class="color-box" style="background-color: #333;"></div>
+                </div>
+                <div class="col-md-2 color-div">
+                    <p class="color-title">TnA: Tickets no asignados</p>
+                    <div class="color-box badge-unasignT"></div>
+                </div>
+                <div class="col-md-2 color-div">
+                    <p class="color-title">TnC: Tickets no cerrados</p>
+                    <div class="color-box badge-unclosedT"></div>
+                </div>
+                <div class="col-md-2 color-div">
+                    <p class="color-title">CnA: Cotizaciones no asignadas</p>
+                    <div class="color-box badge-unasignC"></div>
+                </div>
+                
+                <div class="col-md-2 color-div">
+                    <p class="color-title">CT: Cotizaciones en tránsito</p>
+                    <div class="color-box badge-unclosedQ"></div>
+                </div>
+                <div class="col-md-2 color-div">
+                    <p class="color-title"><i class='fa fa-exclamation-triangle'></i> Sin registro en BD</p>
+                </div>
+            </div>-->
+            
+            <div class="col-md-12" id="badges">
+                <ul class="list-group list-group-horizontal" id="lista-horas">
+                    <li class="list-group-item" id="tot-title">Totales:</li>
+                    <li class='list-group-item'>
+                        <a href="#"  data-toggle="tooltip" data-placement="top" title="Total de llamadas">
+                            <p class="color-title"># Tot: <span class="totNums" id="num-tot">0</span></p>
+                            <div class="color-box" style="background-color: #333;"></div>
+                        </a>
+                    </li>
+                    <li class='list-group-item'>
+                        <a href="#"  data-toggle="tooltip" data-placement="top" title="Tickets no Asignados">
+                            <p class="color-title">TnA: <span class="totNums" id="num-tna">0</span></p>
+                            <div class="color-box badge-unasignT"></div>
+                        </a>
+                    </li>
+                    <li class='list-group-item'>
+                        <a href="#"  data-toggle="tooltip" data-placement="top" title="Tickets no Cerrados">
+                            <p class="color-title">TnC: <span class="totNums" id="num-tnc">0</span></p>
+                            <div class="color-box badge-unclosedT"></div>
+                        </a>
+                    </li>
+                    <li class='list-group-item'>
+                        <a href="#"  data-toggle="tooltip" data-placement="top" title="Cotizaciones no Asignadas">
+                            <p class="color-title">CnA: <span class="totNums" id="num-cna">0</span></p>
+                            <div class="color-box badge-unasignC"></div>
+                        </a>
+                    </li>
+                    <li class='list-group-item'>
+                        <a href="#"  data-toggle="tooltip" data-placement="top" title="Cotizaciones en Tránsito">
+                            <p class="color-title">CT: <span class="totNums" id="num-ct">0</span></p>
+                            <div class="color-box badge-unclosedQ"></div>
+                        </a>
+                    </li>
+                    <li class='list-group-item'>
+                        <a href="#"  data-toggle="tooltip" data-placement="top" title="LEADS Nuevos">
+                            <p class="color-title">LN: <span class="totNums" id="num-ln">0</span></p>
+                            <div class="color-box badge-leadN"></div>
+                        </a>
+                    </li>
+                    <li class='list-group-item'>
+                        <a href="#"  data-toggle="tooltip" data-placement="top" title="LEADS no Asignados">
+                            <p class="color-title">LnA: <span class="totNums" id="num-lna">0</span></p>
+                            <div class="color-box badge-leadLnA"></div>
+                        </a>
+                    </li>
+                    <li class='list-group-item'>
+                        <a href="#"  data-toggle="tooltip" data-placement="top" title="Sin registro en BD">
+                            <p class="color-title"><i class='fa fa-exclamation-triangle'></i> <span class="totNums" id="num-noBD">0</span></p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-md-12">
+                <div class="panel-group" id="accordion">
+                    <!--<div class="panel panel-default hidden">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse0">Domingo<span class="collDay"></span><span class="badge">0</span></a>
+                            </h4>
+                        </div>
+                        <div id="collapse0" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table text-center">
+                                    <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Fecha</th>
+                                          <th>Empresa</th>
+                                          <th>Contacto</th>
+                                          <th>Tipo</th>
+                                          <th>Origen</th>
+                                          <th>Asunto</th>
+                                          <th>Solicitud</th>
+                                          <th>Asignado</th>
+                                          <th>Seguimiento</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="tbody-collapse">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--<div class="panel panel-default hidden">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">Sábado<span class="collDay"></span><span class="badge">0</span></a>
+                            </h4>
+                        </div>
+                        <div id="collapse6" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table text-center">
+                                    <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Fecha</th>
+                                          <th>Empresa</th>
+                                          <th>Contacto</th>
+                                          <th>Tipo</th>
+                                          <th>Origen</th>
+                                          <th>Asunto</th>
+                                          <th>Solicitud</th>
+                                          <th>Asignado</th>
+                                          <th>Seguimiento</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="tbody-collapse">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="panel panel-default hidden">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Viernes<span class="collDay"></span><span class="badge badge-leadLnA">0</span><span class="badge badge-leadN">LN 0</span><span class="badge badge-unclosedQ">0</span><span class="badge badge-unasignC">0</span><span class="badge badge-unclosedT">0</span><span class="badge badge-unasignT">0</span><span class="badge badge-numllamada">0</span></a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table text-center">
+                                    <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Fecha</th>
+                                          <th>Atendió</th>
+                                          <th>Contacto</th>
+                                          <th>Empresa</th>
+                                          <th>Tipo</th>
+                                          <th>Origen</th>
+                                          <th>Asunto</th>
+                                          <th>Solicitud</th>
+                                          <th>Asignado</th>
+                                          <th>Seguimiento</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="tbody-collapse">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default hidden">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Jueves<span class="collDay"></span><span class="badge badge-leadLnA">0</span><span class="badge badge-leadN">LN 0</span><span class="badge badge-unclosedQ">0</span><span class="badge badge-unasignC">0</span><span class="badge badge-unclosedT">0</span><span class="badge badge-unasignT">0</span><span class="badge badge-numllamada">0</span></a>
+                            </h4>
+                        </div>
+                        <div id="collapse4" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table text-center">
+                                    <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Fecha</th>
+                                          <th>Atendió</th>
+                                          <th>Contacto</th>
+                                          <th>Empresa</th>
+                                          <th>Tipo</th>
+                                          <th>Origen</th>
+                                          <th>Asunto</th>
+                                          <th>Solicitud</th>
+                                          <th>Asignado</th>
+                                          <th>Seguimiento</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="tbody-collapse">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default hidden">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Miércoles<span class="collDay"></span><span class="badge badge-leadLnA">0</span><span class="badge badge-leadN">LN 0</span><span class="badge badge-unclosedQ">0</span><span class="badge badge-unasignC">0</span><span class="badge badge-unclosedT">0</span><span class="badge badge-unasignT">0</span><span class="badge badge-numllamada">0</span></a>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table text-center">
+                                    <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Fecha</th>
+                                          <th>Atendió</th>
+                                          <th>Contacto</th>
+                                          <th>Empresa</th>
+                                          <th>Tipo</th>
+                                          <th>Origen</th>
+                                          <th>Asunto</th>
+                                          <th>Solicitud</th>
+                                          <th>Asignado</th>
+                                          <th>Seguimiento</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="tbody-collapse">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default hidden">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Martes<span class="collDay"></span><span class="badge badge-leadLnA">0</span><span class="badge badge-leadN">LN 0</span><span class="badge badge-unclosedQ">0</span><span class="badge badge-unasignC">0</span><span class="badge badge-unclosedT">0</span><span class="badge badge-unasignT">0</span><span class="badge badge-numllamada">0</span></a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table text-center">
+                                    <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Fecha</th>
+                                          <th>Atendió</th>
+                                          <th>Contacto</th>
+                                          <th>Empresa</th>
+                                          <th>Tipo</th>
+                                          <th>Origen</th>
+                                          <th>Asunto</th>
+                                          <th>Solicitud</th>
+                                          <th>Asignado</th>
+                                          <th>Seguimiento</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="tbody-collapse">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default hidden">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Lunes<span class="collDay"></span><span class="badge badge-leadLnA">0</span><span class="badge badge-leadN">LN 0</span><span class="badge badge-unclosedQ">0</span><span class="badge badge-unasignC">0</span><span class="badge badge-unclosedT">0</span><span class="badge badge-unasignT">0</span><span class="badge badge-numllamada">0</span></a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table text-center">
+                                    <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Fecha</th>
+                                          <th>Atendió</th>
+                                          <th>Contacto</th>
+                                          <th>Empresa</th>
+                                          <th>Tipo</th>
+                                          <th>Origen</th>
+                                          <th>Asunto</th>
+                                          <th>Solicitud</th>
+                                          <th>Asignado</th>
+                                          <th>Seguimiento</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="tbody-collapse">
+                                    </tbody>
+                              </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="col-md-12">
+				<table class="table text-center hidden" id="tabla-filtro">
+					<thead>
+					  <tr>
+                          <th>#</th>
+                          <th>Fecha</th>
+                          <th>Atendió</th>
+                          <th>Contacto</th>
+                          <th>Empresa</th>
+                          <th>Tipo</th>
+                          <th>Origen</th>
+                          <th>Asunto</th>
+                          <th>Solicitud</th>
+                          <th>Asignado</th>
+                          <th>Seguimiento</th>
+					  </tr>
+					</thead>
+					<tbody id="tbody-filtro">
+					</tbody>
+			  </table>
+            </div>
+			<div class="loader col-md-12 text-center">
+				 <!--<img src="img/2.png" alt="Loading" height="42" width="42">-->
+			</div>
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+    
+    <!-- ticketsD_Modal -->
+    <div id="ticketsD_Modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Tickets Disponibles</h4>
+                    <p id="llamada_id" class="hidden"></p>
+                </div>
+                <div class="modal-body">
+                    <table class="table text-center tabla-ticketsD">
+                        <thead>
+                          <tr>
+                              <th>Ticket</th>
+                              <th>Cuenta</th>
+                              <th>Referencia</th>
+                              <th>Estado</th>
+                              <th>Fecha Elab</th>
+                              <th>Asignación</th>
+                          </tr>
+                        </thead>
+                        <tbody id="ticketsD_trs">
+                        </tbody>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- quotesD_Modal -->
+    <div id="quotesD_Modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Cotizaciones Disponibles</h4>
+                    <p id="llamada_id" class="hidden"></p>
+                </div>
+                <div class="modal-body">
+                    <table class="table text-center tabla-quotesD">
+                        <thead>
+                          <tr>
+                              <th>Fehca Elab</th>
+                              <th>Folio</th>
+                              <th>Cliente</th>
+                              <th>Estado</th>
+                              <th>Subtotal</th>
+                              <th>Total</th>
+                              <th>Asignación</th>
+                          </tr>
+                        </thead>
+                        <tbody id="quotesD_trs">
+                        </tbody>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- asignLead_modal -->
+    <div id="asignLeads_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Leads Disponibles</h4>
+                    <p id="llamada_id" class="hidden"></p>
+                </div>
+                <div class="modal-body">
+                    <table class="table text-center tabla-quotesD">
+                        <thead>
+                          <tr>
+                              <th>LEAD #</th>
+                              <th>Nombre</th>
+                              <th>Empresa</th>
+                              <th>Asignación</th>
+                          </tr>
+                        </thead>
+                        <tbody id="asignLeads_trs">
+                        </tbody>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- modS_Modal -->
+    <div id="modS_Modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modificar Solicitud</h4>
+                    <p id="llamada_id" class="hidden"></p>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                         <label for="comment">Solicitud:</label>
+                         <textarea class="form-control" rows="2" id="comment" name="solicitud"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-modMS">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- newTicket_Modal -->
+    <div id="newTicket_Modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Nuevo Ticket</h4>
+                    <p id="ticketid" class="hidden"></p>
+                </div>
+                <div class="modal-body">
+                    <h4></h4>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div id="datetimepicker12"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btn-openNewTicket" data-dismiss="modal">Abrir Ticket</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- filtro_Modal -->
+    <div id="filtro_Modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Filtrar llamadas</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                        </div>
+                        <div class="col-md-12">
+                            <form action="" id="form-filtro" method="post">
+                                <div class="form-group">
+                                    <label for="fecha_hora">Fecha Inicio:</label>
+                                    <div class="form-group">
+                                        <div class='input-group date' id='fechaIni-filtro'>
+                                            <input type='text' class="form-control" name="filtro_fechaIni">
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha_hora">Fecha Fin:</label>
+                                    <div class="form-group">
+                                        <div class='input-group date' id='fechaFin-filtro'>
+                                            <input type='text' class="form-control" name="filtro_fechaFin">
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contacto">Contacto:</label>
+                                    <input type="text" class="form-control" name="filtro_contacto">
+                                </div>
+                                <div class="form-group">
+                                    <label for="empresa">Empresa:</label>
+                                    <input type="text" class="form-control" name="filtro_empresa">
+                                    <p class="hidden if_lead"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select_tipo">Tipo:</label>
+                                    <select class="form-control" id="select_tipo" name="filtro_tipo">
+                                        <option>Cliente</option>
+                                        <option>LEAD en BD</option>
+                                        <option>LEAD NUEVO</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select_origen">Origen:</label>
+                                    <select class="form-control" id="select_origen" name="filtro_origen">
+                                        <option>Aspel</option>
+                                        <option>Google</option>
+                                        <option>Expo</option>
+                                        <option>Evento Aspel</option>
+                                        <option>WhatsApp</option>
+                                        <option>Teléfono</option>
+                                        <option>E-Mail</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select_asunto">Asunto:</label>
+                                    <select class="form-control" id="select_asunto" name="filtro_asunto">
+                                        <option>Ticket</option>
+                                        <option>Cotización</option>
+                                        <option>Información</option>
+                                        <option>Seguimiento</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select_asignado">Asignado a:</label>
+                                    <select class="form-control" id="select_asignado" name="filtro_asignado">
+                                        <option>Michelle Zamora</option>
+                                        <option>Gloria Vazquez</option>
+                                        <option>Gaby Espinosa</option>
+                                        <option>Leonardo Soto</option>
+                                        <option>Héctor Ortiz</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select_asignado">Atendió:</label>
+                                    <select class="form-control" id="select_atendio" name="filtro_atendio">
+                                        <option>Michelle Zamora</option>
+                                        <option>Gloria Vazquez</option>
+                                        <option>Gaby Espinosa</option>
+                                        <option>Leonardo Soto</option>
+                                        <option>Héctor Ortiz</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-modF">Buscar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+    
+    <!-- jQuery UI Autocomplete -->
+    <script src="js/jquery-ui.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	
+	<!-- For Date Picker js -->         
+	<script src="js/moment.js"></script>
+	<script src="js/locale/es.js"></script>
+	<script src="js/transition.js"></script>
+	<script src="js/collapse.js"></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#fechaIni-filtro').datetimepicker({
+				format: "YYYY-MM-DD",
+				showTodayButton: true,
+				locale: "es",
+				allowInputToggle: true
+				//defaultDate: new Date()
+			});
+            $('#fechaFin-filtro').datetimepicker({
+				format: "YYYY-MM-DD",
+				showTodayButton: true,
+				locale: "es",
+				allowInputToggle: true
+				//defaultDate: new Date()
+			});
+		});
+	</script>
+    
+    <!-- Accounting JS -->
+    <script src="js/accounting.min.js"></script>
+	
+	<!-- Main JS -->
+    <script src="js/main_test.js"></script>
+    
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
+	
+	<!-- Pagination JS -->
+	<!--
+    <script src="js/pagination.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#pagination-container').pagination({
+				dataSource: rows,
+				callback: function(data, pagination) {
+					// template method of yourself
+					var html = template(data);
+					$('#data-container').html(html);
+				}
+			});
+			function template(data) {
+				var html = '<tr>';
+				$.each(data, function(index, item){
+					html += '<td>' + item + '</td>';
+				});
+				html += '<tr>';
+				return html;
+			}
+		});
+	</script>
+	-->
+</body>
+
+</html>

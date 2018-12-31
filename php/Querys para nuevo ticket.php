@@ -1,0 +1,8 @@
+80 Query       update vtiger_crmentity_seq set id=LAST_INSERT_ID(id+1)
+		     80 Query       insert into vtiger_crmentity (crmid,smcreatorid,smownerid,setype,description,modifiedby,createdtime,modifiedtime) values(26136,'17','17','HelpDesk','','17','2017-05-12 18:25:56','2017-05-12 18:25:56')
+		     80 Query       select * from vtiger_field where tabid=13 and tablename='vtiger_troubletickets' and displaytype in (1,3,4) and vtiger_field.presence in (0,2)
+		     80 Query       select cur_id,prefix from vtiger_modentity_num where semodule='HelpDesk' and active = 1
+		     80 Query       UPDATE vtiger_modentity_num SET cur_id='3893' where cur_id='3892' and active=1 AND semodule='HelpDesk'
+		     80 Query       insert into vtiger_troubletickets(ticketid,ticket_no,parent_id,priority,product_id,severity,status,category,update_log,hours,days,from_portal,title,solution) values(26136,'TT3892',0,'Normal',0,'Minor','Open','Consultoria','',0,0,'0','ticket de prueba','')
+		     80 Query       select * from vtiger_field where tabid=13 and tablename='vtiger_ticketcf' and displaytype in (1,3,4) and vtiger_field.presence in (0,2)
+		     80 Query       insert into vtiger_ticketcf(ticketid,cf_643,cf_644,cf_697,cf_698,cf_709,cf_766,cf_768,cf_769,cf_770,cf_771,cf_773,cf_805,cf_806,cf_809,cf_811,cf_812,cf_813,cf_815,cf_826,cf_832,cf_838,cf_839,cf_840,cf_841,cf_855,cf_859,cf_860,cf_863) values(26136,'Regular','Con Cargo','0','0',NULL,'Si','','','','','',NULL,'23:00:00','','0','','Ninguno','600','Admon','','','','','','','No','No','No')

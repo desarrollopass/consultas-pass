@@ -1,0 +1,286 @@
+
+.table th {
+	text-align: center;
+}
+
+input[name=query-submit] {
+	margin-top: 25px;
+}
+
+#title-filtro {
+	margin-bottom: 30px;
+}
+
+.tabla-consulta {
+	margin-top: 40px;
+}
+
+.logo {
+    margin-top: -20px;
+}
+
+.logo img{
+    width: 170px;
+    margin-top: -7px;
+}
+
+.navbar {
+    height: 65px;
+    padding-top: 15px
+}
+
+.tabla-consulta > tbody > tr.warning > td {
+    background-color: #f2dede;
+}
+
+/*.tabla-consulta > tbody > tr.danger > td {
+    background-color: #dca7a7;
+}
+*/
+/*.danger {*/
+.tabla-consulta > tbody > tr.danger > td {
+    animation:myfirst 3s;
+    -moz-animation:myfirst 3s infinite; /* Firefox */
+    -webkit-animation:myfirst 3s infinite; /* Safari and Chrome */
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+0%   {background:#dca7a7;}
+50%  {background:#f2dede;}
+100%   {background:#dca7a7;}
+}
+
+    @-webkit-keyframes myfirst /* Safari and Chrome */
+{
+0%   {background:#dca7a7;}
+50%  {background:#f2dede;}
+100%   {background:#dca7a7;}
+}
+
+#btn-guardar,
+.btn-filtrar {
+    margin-top: 25px;
+}
+
+.btn-filtrar {
+    margin-left: 5px;
+}
+
+#btns-week {
+    float: right;
+    margin-top: 14px;
+}
+
+.btn-modS {
+    /*margin-left: 10px;*/
+    float: right;
+    margin-top: -3px;
+}
+
+#modS_Modal .modal-dialog {
+    top: 30%;
+}
+
+.line-T {
+    text-decoration: line-through;
+    background-color: #dcdcdc;
+}
+
+#accordion {
+    margin-top: 10px;
+}
+
+#accordion .badge {
+    float: right;
+    margin-left: 5px;
+}
+
+.panel #fecha_hora {
+    padding: 7px 10px 7px 10px;
+}
+
+.panel #tipo_cliente {
+    padding: 7px 10px 7px 10px;
+    height: 34px;
+}
+
+#accordion .badge-unasignT,
+#badges .badge-unasignT {
+    /*background-color: #d9534f;*/
+    /*background-color: #990000;*/
+    background-color: #df3838;
+    /*color: #fff;*/
+}
+
+#accordion .badge-llamadaSal,
+#badges .badge-llamadaSal {
+    /*background-color: #d9534f;*/
+    /*background-color: #990000;*/
+    background-color: #df3838;
+    /*color: #fff;*/
+}
+
+#accordion .badge-unasignC,
+#badges .badge-unasignC {
+    /*background-color: #809160;*/
+    background-color: #FFA500;
+    /*color: #fff;*/
+}
+
+#accordion .badge-unclosedT,
+#badges .badge-unclosedT {
+    /*background-color: #f0ad4e;*/
+    background-color: #0099cc;
+    /*color: #fff;*/
+}
+
+#accordion .badge-unclosedQ,
+#badges .badge-unclosedQ {
+    /*background-color: #9a7b5e;*/
+    background-color: #008000;
+    /*color: #fff;*/
+}
+
+#accordion .badge-leadN,
+#badges .badge-leadN {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+#accordion .badge-leadLnA,
+#badges .badge-leadLnA {
+    background-color: #008080;
+    color: #fff;
+}
+
+#accordion .btn-Tlist {
+    background-color: #df3838;
+    border-color: #da2323;
+}
+
+#accordion .btn-Clist {
+    background-color: #FFA500;
+    border-color: #e69500;
+}
+
+/*Para los cuadros del código de colores*/
+.color-box {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background-color: #ccc;
+    position: absolute;
+    left: 12px;
+    top: 15px;
+}
+
+.color-title {
+    padding-left: 10px;
+}
+
+/*.color-div {
+    float: right;
+}*/
+
+/*Para el simbolo de exclamación de los contactos invalidos*/
+.fa-exclamation-triangle {
+    color: #337ab7;
+}
+
+/*para el simbolo de exclamación sobre el td de la llamada*/
+#accordion .fa-exclamation-triangle {
+    margin-left: 7px;
+}
+
+.color-title .fa {
+    margin-right: 5px;
+}
+
+.ex-red {
+    color: #d9534f;
+}
+
+/*para el checkbox "otros" del form*/
+#llamada-form .checkbox {
+    margin-top: -14px;
+}
+
+/*List Group Horizontal-------------------*/
+.list-group-horizontal {
+    /*text-align: center;*/
+    margin-left: 5px;
+}
+
+.list-group-horizontal .list-group-item {
+    display: inline-block;
+    width: 106px;
+}
+.list-group-horizontal .list-group-item {
+	margin-bottom: 0;
+	margin-left:-4px;
+	margin-right: 0;
+    margin-top: 10px;
+}
+.list-group-horizontal .list-group-item:first-child {
+	border-top-right-radius:0;
+	border-bottom-left-radius:4px;
+}
+.list-group-horizontal .list-group-item:last-child {
+	border-top-right-radius:4px;
+	border-bottom-left-radius:0;
+}
+
+#lista-horas p {
+    margin: 0 0 0 5px;
+}
+
+#lista-horas a {
+    color: #333;
+}
+
+.totNums {
+    font-weight: bold;
+}
+
+#tot-title {
+    font-weight: bold;
+    width: 90px;
+}
+/*List Group Horizontal-------------------*/
+
+.fecha_asign {
+    font-size: 12px;
+}
+
+#llamada-form .checkbox label:nth-child(2) {
+    margin-left: 10px;
+}
+
+#llamada-form .checkbox .boldText {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.llamadaSal .fecha_llamada,
+.llamadaSal .num_llamada {
+    /*background-color: #f2afaf;*/
+    color: #df3838;
+    font-weight: bold;
+}
+
+.llamadaSal .cont_llamada {
+    color: #df3838;
+}
+
+#userLogin p {
+    margin-top: 15px;
+    color: #e5e5e5;
+}
+
+#userLogin li a {
+    color: #337ab7;
+}
+#asunto_modal {
+    margin: 20vh auto 0px auto;
+}
